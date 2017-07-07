@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>推断式注入</title>
+	<script src="../angularjs/angular.min.js"></script>
+</head>
+<body ng-app="app">
+	<div ng-controller="myCtrl">
+		{{name}}
+	</div>
+</body>
+<script>
+	var app = angular.module("app",[]);
+	app.controller("myCtrl",["$scope",function($scope){
+		$scope.name = "zhangsan";
+	}]);
+</script>
+</html>

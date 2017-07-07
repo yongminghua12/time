@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>行内注入</title>
+	<script src="../angularjs/angular.min.js"></script>
+
+</head>
+<body ng-app="app">
+	<div ng-controller="myCtrl">
+		{{name}}
+	</div>
+</body>
+<script>
+	var app = angular.module("app",[]);
+	app.controller("myCtrl",["$scope","$filter",function(a){
+		a.name = "zhangsan";
+	}]);
+</script>
+</html>

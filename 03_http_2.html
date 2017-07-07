@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>http服务</title>
+	<script src="angularjs/angular.min.js"></script>
+	
+</head>
+<body ng-app="app">
+	<div ng-controller="myCtrl">
+		<input type="button" value="show" ng-click="show()">
+		
+	</div>
+</body>
+<script>
+	var app = angular.module("app",[]);
+	app.controller("myCtrl",["$scope","$http",function($scope,$http){
+		$scope.show = function(){
+			/*$http({
+				url:"./data.php",
+				method:"post"
+			}).success(function(result){
+				console.log(result);
+			});*/
+			
+			// 带有参数的请求
+			// get请求
+			/*$http({
+				url:"./data.php",
+				method:"get",
+				params:{"name":"zhangsan","age":23}
+			}).success(function(result){
+				console.log(result);
+			});*/
+			
+			// post请求
+			// post请求如果不设置消息头，参数也是以get方式获取的
+			$http({
+				url:"./data.php",
+				method:"post",
+				headers:{"content-Type":"application/x-www-form-urlencoded"},
+				data:'name="zhangsan"&&age=23'
+				// params:{"name":"zhangsan","age":23}// 报错
+			}).success(function(result){
+				console.log(result);
+			});
+		};
+	}]);
+</script>
+</html>

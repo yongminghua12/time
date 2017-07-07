@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>filter服务</title>
+	<script src="../angularjs/angular.min.js"></script>
+
+</head>
+<body ng-app="app">
+	<div ng-controller="myCtrl">
+		{{msg}}
+	</div>
+</body>
+<script>
+	var app = angular.module("app",[]);
+	app.controller("myCtrl",["$scope","$filter",function($scope,$filter){
+		// 使用filter代替uppercase过滤器
+		var upper = $filter("uppercase");
+		$scope.msg = upper("abcd");
+	}]);
+</script>
+</html>

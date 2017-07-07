@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>factory自定义服务</title>
+	<script src="angularjs/angular.min.js"></script>
+</head>
+<body ng-app="app">
+	<div ng-controller="myCtrl">
+		<input type="text" ng-model="msg" ng-change="forma()">
+		<div>{{msg}}</div>
+		<div>{{chmsg}}</div>
+	</div>
+	<div ng-controller="ctrl">		
+		{{show}}
+	</div>
+</body>
+<script>
+	var app = angular.module("app",[]);
+	app.controller("myCtrl",["$scope","self",function($scope,self){
+		$scope.forma = function(){						  
+			console.log($scope.msg);
+			$scope.chmsg = self.a($scope.msg);
+		}
+		
+	}]);
+	
+	app.factory("self",function(){
+		// 将传进来的字符串拆分并重新拼接，使用拼接符号-
+		// abcd --> a-b-c-d 
+		function format(msg){
+			var arr = msg.split("");
+			var str = arr.join("-");
+			return str;
+		}
+		function bb(){
+			return 123;
+			console.log(123);
+		}
+		return {
+			a:format,
+			b:bb
+		}
+		// 以上代码相当于 return a = function(){...}，
+		// 但是return之后就结束了方法，只能返回该方法
+		// 如果有后续需要返回的方法，则无法返回
+	});
+	app.value("id",123);
+	app.controller("ctrl",["$scope","id",function($scope,id){
+		$scope.show = id;
+	}]);
+</script>
+</html>

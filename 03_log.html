@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>log服务</title>
+	<script src="../angularjs/angular.min.js"></script>
+</head>
+<body ng-app="app">
+	<div ng-controller="myCtrl">
+		
+		
+	</div>
+</body>
+<script>
+	var app = angular.module("app",[]);
+	app.controller("myCtrl",["$scope","$log",function($scope,$log){
+		$log.info("普通信息");
+		$log.warn("警告信息");
+		$log.error("错误信息");
+		$log.log("打印信息");
+		$log.debug("调错模式");
+	}]);
+</script>
+</html>

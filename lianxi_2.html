@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义过滤器字母大小写反转</title>
+	<script src="../angularjs/angular.min.js"></script>
+</head>
+<body ng-app="app">
+	<div ng-controller="myCtrl">
+		<input type="text" ng-model="msg">
+		<div>{{msg | upperLower}}</div>
+	</div>
+</body>
+<script>
+	var app = angular.module("app",[]);
+	app.controller("myCtrl",["$scope",function($scope){
+
+	}]);
+	app.filter("upperLower",function(){
+		return function(msg){
+			if(!msg){
+				return ;
+			}
+			var arr = msg.split("");
+			for(var i=0;i<arr.length;i++){
+				if(arr[i] == arr[i].toUpperCase()){
+					arr[i] = arr[i].toLowerCase();
+				}else{
+					arr[i] = arr[i].toUpperCase();
+				}
+			}
+			return arr.join("");
+		}
+	});
+</script>
+</html>
